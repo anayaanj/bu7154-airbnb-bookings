@@ -34,7 +34,7 @@ To work on one city interactively, start Jupyter with `CITY=Paris jupyter lab`; 
 - **Source:** [Inside Airbnb](https://insideairbnb.com/get-the-data/), licensed CC BY 4.0. The files were downloaded on 2026-10-17.
 - **Field definitions:** the Inside Airbnb Data Dictionary.
 - **Sampling:** both cities exceed the brief's 50,000-listing limit, so each sample is drawn at random with seed `BU7154G11`.
-- **Translation:** a random sample of 2,000 non-English Paris comments was translated with Google Translate (`deep-translator`). The result is committed as `data/Paris/Paris_translated_sample.csv.gz`, so nobody needs to translate again.
+- **Translation:** a random sample of 2,000 non-English Paris comments was translated offline with Argos Translate 1.11.0 (free, no account). 1,911 were translated, covering 13 languages; the rest are rare or misdetected languages. The result is committed as `data/Paris/Paris_translated_sample.csv.gz`, so a rerun does not translate again; the first translation downloads about 1.6 GB of language models.
 
 ## Layout
 

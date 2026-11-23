@@ -140,4 +140,8 @@ write("city_differences", [{"variable": v, "label": LABELS.get(v, v), "london_ir
                             "paris_irr": r["Paris IRR"], "interaction_p": r["interaction p"],
                             "differs": "Yes" if r["differs at 5%"] else "No"} for v, r in pooled.iterrows()],
       [("Compare_Cities.ipynb", "# Pooled Model A")])
+# 8. Translation check (Paris): translated non-English comments vs English comments
+check = table("translation_check", "Paris")
+write("translation_check", [{"group": g, **r.to_dict()} for g, r in check.iterrows()],
+      [(MAIN, "# Cell 8b"), (MAIN, "# Cell 24")])
 print(sorted(os.listdir(OUT)))
