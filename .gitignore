@@ -7,6 +7,7 @@
 !/get_data.py
 !/run_all.sh
 !/build_dashboard_data.py
+!/build_report.py
 !/notebooks/
 !/outputs/
 !/data/

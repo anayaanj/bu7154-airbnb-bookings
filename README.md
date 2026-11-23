@@ -21,6 +21,7 @@ pip install -r requirements.txt
 3. Runs `notebooks/Compare_Cities.ipynb` (the pooled two-city model and the replication scorecard).
 4. Runs `notebooks/Story_Figures.ipynb`.
 5. Runs `build_dashboard_data.py`, which writes the dashboard's data files to `outputs/dashboard/`.
+6. Runs `build_report.py`, which writes the 6-page summary report to `outputs/report.pdf`.
 
 To work on one city interactively, start Jupyter with `CITY=Paris jupyter lab`; London is the default.
 
@@ -42,6 +43,7 @@ To work on one city interactively, start Jupyter with `CITY=Paris jupyter lab`; 
 get_data.py                 download + verify the raw files
 run_all.sh                  run everything in order
 build_dashboard_data.py     dashboard data files (JSON) from the result tables
+build_report.py             6-page PDF summary report
 notebooks/
   Airbnb_Project_Guided.ipynb   Steps 1-8 for one city (CITY environment variable)
   Compare_Cities.ipynb          pooled model with city interactions, replication scorecard
@@ -53,6 +55,7 @@ outputs/
   tables/                   result tables (CSV)
   figures/                  presentation figures (PNG)
   dashboard/                data files behind the interactive dashboard
+  report.pdf                6-page summary report
 ```
 
 ## References
