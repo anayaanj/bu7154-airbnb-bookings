@@ -1,0 +1,82 @@
+{
+"rows": [
+{
+"city": "London",
+"scenario": "As observed",
+"expected_reviews": 27.87151172112462,
+"p_any_review": 0.7742
+},
+{
+"city": "London",
+"scenario": "Nobody is a superhost",
+"expected_reviews": 20.838059779849978,
+"p_any_review": 0.7576986785892662
+},
+{
+"city": "London",
+"scenario": "Everybody is a superhost",
+"expected_reviews": 44.667929475941854,
+"p_any_review": 0.8758694381954274
+},
+{
+"city": "London",
+"scenario": "10 more amenities",
+"expected_reviews": 40.367113318064625,
+"p_any_review": 0.8474699273413208
+},
+{
+"city": "London",
+"scenario": "Price 10% lower",
+"expected_reviews": 28.930926529263143,
+"p_any_review": 0.779889441554174
+},
+{
+"city": "Paris",
+"scenario": "As observed",
+"expected_reviews": 34.74586723479197,
+"p_any_review": 0.8026360527210544
+},
+{
+"city": "Paris",
+"scenario": "Nobody is a superhost",
+"expected_reviews": 26.535026800941296,
+"p_any_review": 0.7820487399206751
+},
+{
+"city": "Paris",
+"scenario": "Everybody is a superhost",
+"expected_reviews": 52.237701597640495,
+"p_any_review": 0.9071025687496156
+},
+{
+"city": "Paris",
+"scenario": "10 more amenities",
+"expected_reviews": 49.4273198270643,
+"p_any_review": 0.8728384651001985
+},
+{
+"city": "Paris",
+"scenario": "Price 10% lower",
+"expected_reviews": 35.18296793269708,
+"p_any_review": 0.8059279542374266
+}
+],
+"meta": [
+{
+"label": "Repository",
+"value": "https://github.com/anayaanj/bu7154-airbnb-bookings"
+},
+{
+"label": "Airbnb_Project_Guided.ipynb, Cell 21",
+"value": "# Cell 21: what Model A and the hurdle logit mean in reviews, for the levers a host controls\n# Each scenario changes one feature for every listing and averages the predictions (other features as observed)\ndef scenario(change=None):\n    X = M.copy()\n    if change:\n        change(X)\n    return nbA.predict(X).mean(), logit.predict(X).mean()\n\nsd_amen, sd_lp = M[\"n_amenities\"].std(), M[\"log_price\"].std()\npriced = M[\"price_missing\"] == 0\n\ndef superhost(v):\n    def change(X):\n        X[\"superhost\"] = v\n    return change\n\ndef more_amenities(X):\n    X[\"n_amenities_z\"] += 10 / sd_amen\n\ndef cheaper(X):\n    X.loc[priced, \"log_price_z\"] += np.log(0.9) / sd_lp\n\nrows = {\"As observed\": scenario(),\n        \"Nobody is a superhost\": scenario(superhost(0)),\n        \"Everybody is a superhost\": scenario(superhost(1)),\n        \"10 more amenities\": scenario(more_amenities),\n        \"Price 10% lower\": scenario(cheaper)}\neffects = pd.DataFrame(rows, index=[\"Expected reviews\", \"P(at least one review)\"]).T\neffects[\"Reviews vs observed\"] = (effects[\"Expected reviews\"] / rows[\"As observed\"][0] - 1).map(\"{:+.0%}\".format)\nprint(effects.round(3).to_string())\nsave_table(effects, \"scenarios\")",
+"type": "code",
+"lang": "python"
+},
+{
+"label": "build_dashboard_data.py",
+"value": "\"\"\"Assemble the dashboard's data files (outputs/dashboard/*.json) from the analysis tables.\n\nEach file is {rows, meta}: meta carries this script and the notebook cell that produced the numbers,\nso a reader of the dashboard can see how every figure was computed.\n\"\"\"\nimport json\nimport os\n\nimport numpy as np\nimport pandas as pd\n\nROOT = os.path.dirname(os.path.abspath(__file__))\nTABLES = os.path.join(ROOT, \"outputs\", \"tables\")\nOUT = os.path.join(ROOT, \"outputs\", \"dashboard\")\nCITIES = [\"London\", \"Paris\"]\nREPO = \"https://github.com/anayaanj/bu7154-airbnb-bookings\"\nSELF = open(os.path.abspath(__file__)).read()\n\nLABELS = {\n    \"superhost\": \"Superhost\", \"host_years_z\": \"Host tenure (+1 SD)\", \"log_host_listings_z\": \"Host's listings (+1 SD)\",\n    \"accommodates_z\": \"Capacity (+1 SD)\", \"n_amenities_z\": \"Amenities (+1 SD)\", \"entire_home\": \"Entire home\",\n    \"log_price_z\": \"Price (+1 SD)\", \"price_missing\": \"No price (not bookable)\",\n    \"has_profile_pic\": \"Host profile photo\", \"identity_verified\": \"Identity verified\", \"log_desc_words_z\": \"Description length\",\n    \"lix_z\": \"Description readability (LIX)\", \"promo_per_100_z\": \"Promotional words\", \"desc_pos_z\": \"Description positivity\",\n    \"desc_neg_z\": \"Description negativity\", \"review_scores_rating_z\": \"Overall rating\",\n    \"review_scores_communication_z\": \"Communication score\", \"review_scores_cleanliness_z\": \"Cleanliness score\",\n    \"share_positive_z\": \"Share of positive reviews\", \"review_neg_z\": \"Review negativity\",\n    \"host_response_time\": \"Host response time\", \"instant_bookable\": \"Instant booking\",\n}\nGUEST = [\"review_scores_rating_z\", \"review_scores_communication_z\", \"review_scores_cleanliness_z\",\n         \"share_positive_z\", \"review_neg_z\", \"log_mean_words_z\", \"share_non_en_z\", \"log_spread_z\"]\n\n\ndef table(name, city=None):\n    return pd.read_csv(os.path.join(TABLES, f\"{city + '_' if city else ''}{name}.csv\"), index_col=0)\n\n\ndef cell(notebook, header):\n    nb = json.load(open(os.path.join(ROOT, \"notebooks\", notebook)))\n    return next(\"\".join(c[\"source\"]) for c in nb[\"cells\"]\n                if c[\"cell_type\"] == \"code\" and \"\".join(c[\"source\"]).startswith(header))\n\n\ndef write(name, rows, cells):\n    \"\"\"cells: [(notebook, header)] whose code produced these numbers.\"\"\"\n    meta = [{\"label\": \"Repository\", \"value\": REPO}]\n    for notebook, header in cells:\n        meta.append({\"label\": f\"{notebook}, {header.lstrip('# ')}\", \"value\": cell(notebook, header),\n                     \"type\": \"code\", \"lang\": \"python\"})\n    meta.append({\"label\": \"build_dashboard_data.py\", \"value\": SELF, \"type\": \"code\", \"lang\": \"python\"})\n    rows = pd.DataFrame(rows).replace({np.nan: None}).to_dict(\"records\")\n    with open(os.path.join(OUT, f\"{name}.json\"), \"w\") as f:\n        json.dump({\"rows\": rows, \"meta\": meta}, f, ensure_ascii=False, indent=0)\n\n\nos.makedirs(OUT, exist_ok=True)\nMAIN = \"Airbnb_Project_Guided.ipynb\"\n\n# 1. One row per city: the data journey and the outcome's dispersion\nsummary = []\nfor city in CITIES:\n    log = pd.read_csv(os.path.join(ROOT, \"data\", city, f\"{city}_data_log.csv\"), header=None, index_col=0)[1]\n    M = pd.read_csv(os.path.join(ROOT, \"data\", city, f\"{city}_model_data.csv.gz\"), usecols=[\"number_of_reviews\"] + GUEST)\n    y = M[\"number_of_reviews\"]\n    lang = table(\"language_share\", city)[\"share\"]\n    summary.append({\n        \"city\": city, \"snapshot\": log[\"Snapshot date (InsideAirbnb)\"], \"downloaded\": log[\"Download date\"], \"seed\": log[\"Seed\"],\n        \"raw_listings\": int(log[\"listings.csv.gz raw rows\"].replace(\",\", \"\")),\n        \"raw_reviews\": int(log[\"reviews.csv.gz raw rows\"].replace(\",\", \"\")),\n        \"sample_listings\": int(log[\"Listings after sampling\"].replace(\",\", \"\")),\n        \"sample_reviews\": int(log[\"Reviews after sampling\"].replace(\",\", \"\")),\n        \"model_listings\": len(M), \"reviewed_listings\": int((y > 0).sum()),\n        \"model_b_listings\": int(M[y > 0].dropna(subset=GUEST).shape[0]),\n        \"zero_share\": (y == 0).mean(), \"mean_reviews\": y.mean(), \"variance_to_mean\": y.var() / y.mean(),\n        \"english_share\": lang.get(\"en\", 0.0),\n    })\nwrite(\"city_summary\", summary, [(MAIN, \"# Cell 6\"), (MAIN, \"# Cell 8:\"), (MAIN, \"# Cell 15\")])\n\n# 2. Brief variables that are empty in the files\ndecisions = {\n    \"host_response_time\": \"Cannot be tested\", \"instant_bookable\": \"Cannot be tested\",\n    \"host_total_listings_count\": \"Replaced by host_listings_count\", \"host_since\": \"Replaced by hosts_time_as_host_years\",\n    \"price\": \"Median-filled and flagged (price_missing)\",\n    \"review_scores_rating\": \"Only for reviewed listings (Model B)\", \"review_scores_communication\": \"Only for reviewed listings (Model B)\",\n    \"review_scores_cleanliness\": \"Only for reviewed listings (Model B)\", \"first_review\": \"Only for reviewed listings (Model B)\",\n    \"last_review\": \"Only for reviewed listings (Model B)\",\n}\nmiss = pd.DataFrame({c: table(\"missing_fields\", c)[\"share_missing\"] for c in CITIES})\nwrite(\"missing_fields\", [{\"field\": f, \"london_missing\": r[\"London\"], \"paris_missing\": r[\"Paris\"],\n                          \"decision\": decisions.get(f, \"Used as given\")} for f, r in miss.iterrows() if r.max() > 0],\n      [(MAIN, \"# Cell 4\")])\n\n# 3. Observed vs predicted distribution of reviews\nwrite(\"count_fit\", [{\"city\": c, \"reviews\": b, \"observed\": r[\"Observed\"], \"poisson\": r[\"Poisson\"],\n                     \"negative_binomial\": r[\"Negative Binomial\"]}\n                    for c in CITIES for b, r in table(\"count_fit\", c).iterrows()], [(MAIN, \"# Cell 16\")])\nwrite(\"model_fit\", [{\"city\": c, \"model\": m, \"aic\": t.loc[\"AIC\", m], \"bic\": t.loc[\"BIC\", m],\n                     \"predicted_zero_share\": t.loc[\"predicted share of zeros\", m]}\n                    for c in CITIES for t in [table(\"model_fit\", c)] for m in t.columns], [(MAIN, \"# Cell 16\")])\n\n# 4. Every coefficient the story shows, as IRR or odds ratio with its 95% CI\nmodels = {\"model_a\": \"model_a\", \"hurdle_any_review\": \"first_review\", \"hurdle_how_many\": \"more_reviews\",\n          \"model_ltm\": \"last_12_months\"}  # model ids: Model A, hurdle part 1 (odds ratios), hurdle part 2, Model A on last-12-month reviews\nwrite(\"effects\", [{\"city\": c, \"model\": label, \"variable\": v, \"label\": LABELS.get(v, v), \"irr\": r[\"IRR\"],\n                   \"low\": r[\"low\"], \"high\": r[\"high\"], \"p\": r[\"p\"]}\n                  for name, label in models.items() for c in CITIES for v, r in table(name, c).iterrows()],\n      [(MAIN, \"# Cell 16\"), (MAIN, \"# Cell 20\"), (MAIN, \"# Cell 22\")])\n\n# 5. What a host can change\nwrite(\"scenarios\", [{\"city\": c, \"scenario\": s, \"expected_reviews\": r[\"Expected reviews\"],\n                     \"p_any_review\": r[\"P(at least one review)\"]}\n                    for c in CITIES for s, r in table(\"scenarios\", c).iterrows()], [(MAIN, \"# Cell 21\")])\n\n# 6. Listings with and without a price\nwrite(\"price_missing\", [{\"city\": c, \"group\": \"No price\" if g == 1 else \"Has a price\", **r.to_dict()}\n                        for c in CITIES for g, r in table(\"price_missing\", c).iterrows()], [(MAIN, \"# Cell 11\")])\n\n\n# 7. Replication scorecard and city differences\ndef verdict(text):\n    if text.startswith(\"✅\"):\n        return \"Replicated\", float(text.split()[-1])\n    if text.startswith(\"❌\"):\n        return \"Opposite\", float(text.split()[-1])\n    if text.startswith(\"⚠\"):\n        return \"Not in data\", None\n    return \"Not significant\", float(text.split(\"(\")[1].rstrip(\")\"))\n\n\nrows = []\nfor v, r in table(\"scorecard\").iterrows():\n    row = {\"variable\": v, \"label\": LABELS.get(v, v), \"expected\": r[\"expected\"], \"source\": r[\"source\"]}\n    for c in CITIES:\n        row[f\"{c.lower()}_verdict\"], row[f\"{c.lower()}_irr\"] = verdict(r[c])\n    rows.append(row)\nwrite(\"scorecard\", rows, [(\"Compare_Cities.ipynb\", \"# Replication scorecard\")])\n\npooled = table(\"pooled_interactions\")\nwrite(\"city_differences\", [{\"variable\": v, \"label\": LABELS.get(v, v), \"london_irr\": r[\"London IRR\"],\n                            \"paris_irr\": r[\"Paris IRR\"], \"interaction_p\": r[\"interaction p\"],\n                            \"differs\": \"Yes\" if r[\"differs at 5%\"] else \"No\"} for v, r in pooled.iterrows()],\n      [(\"Compare_Cities.ipynb\", \"# Pooled Model A\")])\nprint(sorted(os.listdir(OUT)))\n",
+"type": "code",
+"lang": "python"
+}
+]
+}

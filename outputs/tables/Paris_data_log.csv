@@ -1,0 +1,9 @@
+,value
+City,Paris
+Snapshot date (InsideAirbnb),2026-09-16
+Download date,2026-10-17
+Seed,BU7154G11
+listings.csv.gz raw rows,"77,149"
+reviews.csv.gz raw rows,"2,503,875"
+Listings after sampling,"50,000"
+Reviews after sampling,"1,626,768"

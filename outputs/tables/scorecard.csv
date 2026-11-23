@@ -1,0 +1,21 @@
+,expected,source,London,Paris
+superhost,+,Both,✅ 2.14,✅ 1.97
+host_years_z,+,Both,✅ 1.62,✅ 1.43
+log_host_listings_z,-,Sengupta,n.s. (1.04),n.s. (0.92)
+accommodates_z,-,Sengupta,✅ 0.95,n.s. (1.01)
+n_amenities_z,+,Both,✅ 1.76,✅ 1.63
+log_price_z,-,Biswas,✅ 0.77,✅ 0.91
+has_profile_pic,+,Both,✅ 1.93,✅ 1.51
+identity_verified,+,Biswas,n.s. (0.87),n.s. (0.83)
+log_desc_words_z,+,Both,✅ 1.25,✅ 1.11
+lix_z,+,Biswas,n.s. (1.00),n.s. (1.00)
+promo_per_100_z,+,Biswas,n.s. (0.99),n.s. (0.99)
+desc_pos_z,-,Sengupta,✅ 0.96,n.s. (1.01)
+desc_neg_z,+,Sengupta,✅ 1.04,✅ 1.03
+review_scores_rating_z,+,Both,❌ 0.91,❌ 0.71
+review_scores_communication_z,+,Sengupta,✅ 1.06,✅ 1.13
+review_scores_cleanliness_z,+,Sengupta,✅ 1.13,✅ 1.25
+share_positive_z,+,Biswas,✅ 1.03,✅ 1.02
+review_neg_z,-,Biswas,❌ 1.02,n.s. (1.00)
+host_response_time,faster +,Sengupta,⚠️ empty in file,⚠️ empty in file
+instant_bookable,+,Both,⚠️ empty in file,⚠️ empty in file

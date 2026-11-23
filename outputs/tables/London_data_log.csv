@@ -1,0 +1,9 @@
+,value
+City,London
+Snapshot date (InsideAirbnb),2026-09-17
+Download date,2026-10-17
+Seed,BU7154G11
+listings.csv.gz raw rows,"91,954"
+reviews.csv.gz raw rows,"2,323,969"
+Listings after sampling,"50,000"
+Reviews after sampling,"1,267,626"

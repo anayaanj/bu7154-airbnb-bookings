@@ -1,0 +1,24 @@
+# Public repo: ignore everything, then allow only code, docs and small outputs.
+# Course materials (brief, papers, recordings) and the raw InsideAirbnb files stay local.
+/*
+!/.gitignore
+!/README.md
+!/requirements.txt
+!/get_data.py
+!/run_all.sh
+!/build_dashboard_data.py
+!/notebooks/
+!/outputs/
+!/data/
+/data/*
+!/data/checksums.sha256
+!/data/London/
+!/data/Paris/
+/data/London/*
+/data/Paris/*
+!/data/*/*_data_log.csv
+!/data/Paris/Paris_translated_sample.csv.gz
+!/data/Paris/Paris_translation_log.csv
+.DS_Store
+__pycache__/
+.ipynb_checkpoints/
