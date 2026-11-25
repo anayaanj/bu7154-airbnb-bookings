@@ -1,0 +1,9 @@
+,value
+City,Dublin
+Snapshot date (InsideAirbnb),2026-09-17
+Download date,2026-11-25
+Seed,BU7154G11
+listings.csv.gz raw rows,"6,748"
+reviews.csv.gz raw rows,"389,071"
+Listings after sampling,"6,748"
+Reviews after sampling,"389,071"

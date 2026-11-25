@@ -1,0 +1,9 @@
+,value
+City,Chicago
+Snapshot date (InsideAirbnb),2026-09-19
+Download date,2026-11-25
+Seed,BU7154G11
+listings.csv.gz raw rows,"8,695"
+reviews.csv.gz raw rows,"566,844"
+Listings after sampling,"8,695"
+Reviews after sampling,"566,844"

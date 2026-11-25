@@ -14,4 +14,5 @@ done
 run Compare_Cities Compare_Cities
 run Story_Figures Story_Figures
 python build_dashboard_data.py
+python build_atlas.py
 python build_report.py

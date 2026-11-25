@@ -1,0 +1,23 @@
+city,snapshot,download_date,source,sha256,listings_raw,listings_analysed
+London,2026-09-17,2026-10-17,https://data.insideairbnb.com/united-kingdom/england/london/2026-09-17/data/listings.csv.gz,8017870734a9bffa1b424937372e5f02f8c4a114e5060534d7423be5fd718b4c,91954,50000
+Paris,2026-09-16,2026-10-17,https://data.insideairbnb.com/france/ile-de-france/paris/2026-09-16/data/listings.csv.gz,3285e5096c1869a684d5e65eb38526f07aa16bdc41cd76686feba8a2b78bd019,77149,49999
+Dublin,2026-09-17,2026-11-25,https://data.insideairbnb.com/ireland/leinster/dublin/2026-09-17/data/listings.csv.gz,8cecf9fc168b2c3e79203c4aa476570151791a51d5a2366d2c8e17f7ef5c52ea,6748,6748
+Rest of Ireland,2026-09-17,2026-11-25,https://data.insideairbnb.com/ireland/2026-09-17/data/listings.csv.gz,bd6b5c0cf46fb162ee56fd89af73a0a4eb919bd61b06108d2a9c3bfc16dec734,25656,25656
+Amsterdam,2026-09-16,2026-11-25,https://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2026-09-16/data/listings.csv.gz,6ea5cc10880db73c1a4988561a204766c8471a643d797ab041e183e5de053b11,10612,10612
+Athens,2026-09-22,2026-11-25,https://data.insideairbnb.com/greece/attica/athens/2026-09-22/data/listings.csv.gz,192d5ffba10050bb01aa788332e86c2eb1dc25056514c2ecb114c49cfb7ccde1,15134,15134
+Barcelona,2026-09-17,2026-11-25,https://data.insideairbnb.com/spain/catalonia/barcelona/2026-09-17/data/listings.csv.gz,226f5e6af36cc82286765cda452cbe9abd6fbd70415aaf2b23a07805f6fbf23e,15236,15232
+Copenhagen,2026-09-25,2026-11-25,https://data.insideairbnb.com/denmark/hovedstaden/copenhagen/2026-09-25/data/listings.csv.gz,12f95a0ce228e3484f059769546bdc14a32997b014483f328fb42576caebc739,22845,22844
+Geneva,2026-09-23,2026-11-25,https://data.insideairbnb.com/switzerland/geneva/geneva/2026-09-23/data/listings.csv.gz,e2a556049a9ce6eed7520ae12deb48541c0a75b06d5bab24f8350ffa49d7557c,2538,2538
+Melbourne,2026-09-16,2026-11-25,https://data.insideairbnb.com/australia/vic/melbourne/2026-09-16/data/listings.csv.gz,7d09b7124bfc26bdb5c8a2a66efe0b9a48e4e1d7cc2e11242e9d52ee3f17985b,25715,25715
+Sydney,2026-09-16,2026-11-25,https://data.insideairbnb.com/australia/nsw/sydney/2026-09-16/data/listings.csv.gz,06bbd629fbe93d9da1f2163e82d584a58738a53d7897d5c081f665aadc4e3c55,20833,20832
+Tasmania,2026-09-16,2026-11-25,https://data.insideairbnb.com/australia/tas/tasmania/2026-09-16/data/listings.csv.gz,250a22f27bb799897dd19b7dde15e3107a7a00deec594a08cce0ad4ef53d2eca,6609,6609
+Western Australia,2026-09-21,2026-11-25,https://data.insideairbnb.com/australia/wa/western-australia/2026-09-21/data/listings.csv.gz,aeb01d674edc12c9edd1244bb60483137e7dd6f496c54c4ddedb8245b9fa19b8,13292,13292
+Hong Kong,2026-09-20,2026-11-25,https://data.insideairbnb.com/china/hk/hong-kong/2026-09-20/data/listings.csv.gz,42513d2d330ac57df5682ac8b8c5fb90c098d8c7ad7b78e50bdc029704d1be04,6614,6614
+Tokyo,2026-09-25,2026-11-25,https://data.insideairbnb.com/japan/kantō/tokyo/2026-09-25/data/listings.csv.gz,02cf42d1c82a72eea579f0a8156ced39e83763f1bdc0b72452b092f70429838b,35970,35970
+Austin,2026-09-17,2026-11-25,https://data.insideairbnb.com/united-states/tx/austin/2026-09-17/data/listings.csv.gz,533fc4065d681bc22d076dbb6a5d1eea6b81fa17d304520df70f3d407300d166,11111,11111
+Boston,2026-09-19,2026-11-25,https://data.insideairbnb.com/united-states/ma/boston/2026-09-19/data/listings.csv.gz,961472e727bbe121b5138637602f323467a160b81d2d5674bc422e6ebd28e89b,4368,4368
+Chicago,2026-09-19,2026-11-25,https://data.insideairbnb.com/united-states/il/chicago/2026-09-19/data/listings.csv.gz,65e6e2b9913c9ee3f57bac9d0be9b1ebf07bd8c2c776edede348e77213e503c2,8695,8695
+Hawaii,2026-09-17,2026-11-25,https://data.insideairbnb.com/united-states/hi/hawaii/2026-09-17/data/listings.csv.gz,9bad8d4aa7cd6678234ff99e4a7f54356b946f209a70c783d68e2e40a149b578,38779,38779
+New York City,2026-09-14,2026-11-25,https://data.insideairbnb.com/united-states/ny/new-york-city/2026-09-14/data/listings.csv.gz,a67bf574e47aa6eba5b2262987dbd9684f206d5cd0183470056f9c936b8e7ae1,29918,29916
+Seattle,2026-09-20,2026-11-25,https://data.insideairbnb.com/united-states/wa/seattle/2026-09-20/data/listings.csv.gz,f0f2b374fc4495d848863244abec491149e0b978a4e17b631d0aa83da3ed6e4f,7657,7657
+Mexico City,2026-09-23,2026-11-25,https://data.insideairbnb.com/mexico/df/mexico-city/2026-09-23/data/listings.csv.gz,76cd2d8186d8e2d6b62ebe769d83322ef7a2dcf059b7eede8492ef61849c1cee,30468,30468

@@ -14,6 +14,13 @@ GUEST = ["review_scores_rating_z", "review_scores_communication_z", "review_scor
          "share_positive_z", "review_neg_z", "log_mean_words_z", "share_non_en_z", "log_spread_z"]
 
 
+def usable(data, preds, min_count=20):
+    """The predictors that vary enough to estimate: a 0/1 flag needs at least min_count listings on each side."""
+    def varies(x):
+        return x.value_counts().min() >= min_count if x.nunique() == 2 else x.std() > 0
+    return [v for v in preds if varies(data[v])]
+
+
 def formula(preds, y="number_of_reviews"):
     return f"{y} ~ " + " + ".join(preds)
 
@@ -41,3 +48,24 @@ def irr(res):
 
 def stars(p):
     return "***" if p < .001 else "**" if p < .01 else "*" if p < .05 else ""
+
+
+# Replication scorecard: the direction each predictor has in Biswas et al. (2020) and Sengupta et al. (2021)
+EXPECTED = {  # variable: (expected sign, source)
+    "superhost": ("+", "Both"), "host_years_z": ("+", "Both"), "log_host_listings_z": ("-", "Sengupta"),
+    "accommodates_z": ("-", "Sengupta"), "n_amenities_z": ("+", "Both"), "log_price_z": ("-", "Biswas"),
+    "has_profile_pic": ("+", "Both"), "identity_verified": ("+", "Biswas"), "log_desc_words_z": ("+", "Both"),
+    "lix_z": ("+", "Biswas"), "promo_per_100_z": ("+", "Biswas"), "desc_pos_z": ("-", "Sengupta"), "desc_neg_z": ("+", "Sengupta"),
+    "review_scores_rating_z": ("+", "Both"), "review_scores_communication_z": ("+", "Sengupta"),
+    "review_scores_cleanliness_z": ("+", "Sengupta"), "share_positive_z": ("+", "Biswas"), "review_neg_z": ("-", "Biswas"),
+}
+
+
+def replication(m, run=lambda fit: fit()):
+    """Our estimate of every scorecard predictor: core variables from Model A, text variables from Model A+,
+    guest-side variables from Model B. `run` can wrap each fit, e.g. to skip a model that does not converge."""
+    reviewed = m[m["number_of_reviews"] > 0].dropna(subset=GUEST)
+    parts = [run(lambda: irr(fit_nb(CORE, m))),
+             run(lambda: irr(fit_nb(CORE + usable(m, TEXT), m)).drop(index=CORE)),
+             run(lambda: irr(fit_nb(CORE + GUEST, reviewed)).drop(index=CORE))]
+    return pd.concat([part for part in parts if part is not None])

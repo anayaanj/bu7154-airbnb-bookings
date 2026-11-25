@@ -1,0 +1,9 @@
+,value
+City,New York City
+Snapshot date (InsideAirbnb),2026-09-14
+Download date,2026-11-25
+Seed,BU7154G11
+listings.csv.gz raw rows,"29,918"
+reviews.csv.gz raw rows,"999,099"
+Listings after sampling,"29,918"
+Reviews after sampling,"999,099"

@@ -1,0 +1,9 @@
+,value
+City,Amsterdam
+Snapshot date (InsideAirbnb),2026-09-16
+Download date,2026-11-25
+Seed,BU7154G11
+listings.csv.gz raw rows,"10,612"
+reviews.csv.gz raw rows,"571,927"
+Listings after sampling,"10,612"
+Reviews after sampling,"571,927"

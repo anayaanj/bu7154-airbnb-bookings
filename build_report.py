@@ -14,7 +14,7 @@ from reportlab.platypus import (Image, KeepTogether, ListFlowable, ListItem, Pag
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TABLES, FIGURES = os.path.join(ROOT, "outputs", "tables"), os.path.join(ROOT, "outputs", "figures")
 OUT = os.path.join(ROOT, "outputs", "report.pdf")
-REPO = "github.com/anayaanj/bu7154-airbnb-bookings"
+REPO = "github.com/anayaanj/predicting-airbnb-bookings"
 
 INK, MUTED, RULE, PANEL = colors.HexColor("#14181F"), colors.HexColor("#5B6472"), colors.HexColor("#D9DDE3"), colors.HexColor("#F3F5F8")
 LONDON, PARIS = colors.HexColor("#2A78D6"), colors.HexColor("#C2501F")
@@ -76,6 +76,8 @@ fit = {c: table("count_fit", c) for c in CITIES}
 mfit = {c: table("model_fit", c) for c in CITIES}
 A = {c: table("model_a", c) for c in CITIES}
 ltm = {c: table("model_ltm", c) for c in CITIES}
+stay = {c: table("long_stay", c) for c in CITIES}
+A_stay = {c: table("model_long_stay", c) for c in CITIES}
 scen = {c: table("scenarios", c) for c in CITIES}
 lang = {c: table("language_share", c)["share"] for c in CITIES}
 card = table("scorecard")
@@ -164,6 +166,10 @@ story = [
         "OLS on log(1 + reviews) agrees with the Negative Binomial on the direction and significance of superhost status, tenure, "
         "amenities, price and missing price in both cities.",
         "Replacing log price with price relative to the neighbourhood median leaves the other estimates almost unchanged.",
+        f"{pct(stay['Paris'].loc[1, 'share'])} of Paris listings and {pct(stay['London'].loc[1, 'share'])} of London listings only take stays of "
+        "30 nights or more; these are cheap and rarely reviewed. With a control for them, the price effect is "
+        f"{x(A_stay['London'].loc['log_price_z', 'IRR'])} in London (Model A: {x(A['London'].loc['log_price_z', 'IRR'])}) and "
+        f"{x(A_stay['Paris'].loc['log_price_z', 'IRR'])} in Paris (Model A: {x(A['Paris'].loc['log_price_z', 'IRR'])}).",
         f"Sentiment uses English comments only. In {int(trans.loc['Translated sample', 'comments']):,} Paris comments translated offline with "
         f"Argos Translate, {pct(trans.loc['Translated sample', 'positive_share'])} were positive against "
         f"{pct(trans.loc['English comments', 'positive_share'])} of English comments (z = {trans.loc['Translated sample', 'z']:.2f}). "

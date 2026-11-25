@@ -8,6 +8,9 @@
 !/run_all.sh
 !/build_dashboard_data.py
 !/build_report.py
+!/build_atlas.py
+!/run_atlas.sh
+!/app/
 !/notebooks/
 !/outputs/
 !/data/
@@ -20,6 +23,9 @@
 !/data/*/*_data_log.csv
 !/data/Paris/Paris_translated_sample.csv.gz
 !/data/Paris/Paris_translation_log.csv
+node_modules/
+dist/
 .DS_Store
 __pycache__/
 .ipynb_checkpoints/
+.vercel

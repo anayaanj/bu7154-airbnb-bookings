@@ -1,0 +1,9 @@
+,value
+City,Seattle
+Snapshot date (InsideAirbnb),2026-09-20
+Download date,2026-11-25
+Seed,BU7154G11
+listings.csv.gz raw rows,"7,657"
+reviews.csv.gz raw rows,"636,496"
+Listings after sampling,"7,657"
+Reviews after sampling,"636,496"

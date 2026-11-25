@@ -13,7 +13,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 TABLES = os.path.join(ROOT, "outputs", "tables")
 OUT = os.path.join(ROOT, "outputs", "dashboard")
 CITIES = ["London", "Paris"]
-REPO = "https://github.com/anayaanj/bu7154-airbnb-bookings"
+REPO = "https://github.com/anayaanj/predicting-airbnb-bookings"
 SELF = open(os.path.abspath(__file__)).read()
 
 LABELS = {

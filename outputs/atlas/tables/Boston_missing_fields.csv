@@ -1,0 +1,17 @@
+,in_file,share_missing
+host_is_superhost,True,0.0
+host_response_time,True,1.0
+host_total_listings_count,True,1.0
+accommodates,True,0.0
+amenities,True,0.0
+price,True,0.202
+review_scores_rating,True,0.181
+review_scores_communication,True,0.181
+review_scores_cleanliness,True,0.181
+instant_bookable,True,1.0
+first_review,True,0.181
+last_review,True,0.181
+number_of_reviews,True,0.0
+host_listings_count,True,0.0
+hosts_time_as_host_years,True,0.0
+host_since,True,1.0

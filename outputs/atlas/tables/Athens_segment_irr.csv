@@ -1,0 +1,9 @@
+,Segment 0,Segment 1
+superhost,2.124***,1.852***
+host_years_z,2.189***,1.947***
+log_host_listings_z,0.804**,0.685***
+accommodates_z,0.972,1.09*
+n_amenities_z,1.464***,1.506***
+entire_home,1.605*,7.667***
+log_price_z,0.615***,0.852**
+price_missing,0.619***,0.516***

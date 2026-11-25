@@ -1,0 +1,9 @@
+,value
+City,Hawaii
+Snapshot date (InsideAirbnb),2026-09-17
+Download date,2026-11-25
+Seed,BU7154G11
+listings.csv.gz raw rows,"38,779"
+reviews.csv.gz raw rows,"1,601,961"
+Listings after sampling,"38,779"
+Reviews after sampling,"1,601,961"

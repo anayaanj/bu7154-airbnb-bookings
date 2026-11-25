@@ -1,0 +1,9 @@
+,value
+City,Hong Kong
+Snapshot date (InsideAirbnb),2026-09-20
+Download date,2026-11-25
+Seed,BU7154G11
+listings.csv.gz raw rows,"6,614"
+reviews.csv.gz raw rows,"122,715"
+Listings after sampling,"6,614"
+Reviews after sampling,"122,715"

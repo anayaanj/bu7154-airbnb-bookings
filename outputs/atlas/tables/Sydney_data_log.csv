@@ -1,0 +1,9 @@
+,value
+City,Sydney
+Snapshot date (InsideAirbnb),2026-09-16
+Download date,2026-11-25
+Seed,BU7154G11
+listings.csv.gz raw rows,"20,833"
+reviews.csv.gz raw rows,"829,163"
+Listings after sampling,"20,833"
+Reviews after sampling,"829,163"

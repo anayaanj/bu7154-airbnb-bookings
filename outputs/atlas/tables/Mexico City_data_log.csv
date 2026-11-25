@@ -1,0 +1,9 @@
+,value
+City,Mexico City
+Snapshot date (InsideAirbnb),2026-09-23
+Download date,2026-11-25
+Seed,BU7154G11
+listings.csv.gz raw rows,"30,468"
+reviews.csv.gz raw rows,"1,795,294"
+Listings after sampling,"30,468"
+Reviews after sampling,"1,795,294"

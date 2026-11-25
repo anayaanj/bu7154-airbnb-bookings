@@ -1,0 +1,9 @@
+,value
+City,Austin
+Snapshot date (InsideAirbnb),2026-09-17
+Download date,2026-11-25
+Seed,BU7154G11
+listings.csv.gz raw rows,"11,111"
+reviews.csv.gz raw rows,"653,461"
+Listings after sampling,"11,111"
+Reviews after sampling,"653,461"

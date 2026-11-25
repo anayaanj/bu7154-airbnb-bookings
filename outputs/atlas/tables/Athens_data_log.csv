@@ -1,0 +1,9 @@
+,value
+City,Athens
+Snapshot date (InsideAirbnb),2026-09-22
+Download date,2026-11-25
+Seed,BU7154G11
+listings.csv.gz raw rows,"15,134"
+reviews.csv.gz raw rows,"986,851"
+Listings after sampling,"15,134"
+Reviews after sampling,"986,851"

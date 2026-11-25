@@ -1,0 +1,9 @@
+,value
+City,Boston
+Snapshot date (InsideAirbnb),2026-09-19
+Download date,2026-11-25
+Seed,BU7154G11
+listings.csv.gz raw rows,"4,368"
+reviews.csv.gz raw rows,"267,731"
+Listings after sampling,"4,368"
+Reviews after sampling,"267,731"

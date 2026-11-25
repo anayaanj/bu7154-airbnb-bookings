@@ -1,0 +1,9 @@
+,value
+City,Tasmania
+Snapshot date (InsideAirbnb),2026-09-16
+Download date,2026-11-25
+Seed,BU7154G11
+listings.csv.gz raw rows,"6,609"
+reviews.csv.gz raw rows,"678,349"
+Listings after sampling,"6,609"
+Reviews after sampling,"678,349"

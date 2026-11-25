@@ -1,0 +1,9 @@
+,value
+City,Western Australia
+Snapshot date (InsideAirbnb),2026-09-21
+Download date,2026-11-25
+Seed,BU7154G11
+listings.csv.gz raw rows,"13,292"
+reviews.csv.gz raw rows,"862,001"
+Listings after sampling,"13,292"
+Reviews after sampling,"862,001"
